@@ -11,9 +11,10 @@ namespace UnitTestDbSampleProd
             _dbContext = dbContext;
         }
 
-        public Member GetMember(string id)
+        public bool MemberIsExists(string id)
         {
-            return Queryable.First<Member>(_dbContext.Member, r => r.Id == id);
+            var member = _dbContext.Member.FirstOrDefault(r => r.Id == id);
+            return member != null;
         }
     }
 }
